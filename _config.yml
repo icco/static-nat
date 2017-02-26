@@ -1,12 +1,13 @@
 # Permalinks
-permalink:           pretty
+permalink: pretty
 
 # Setup
-title:               Poole
-tagline:             The Jekyll Butler
-url:                 http://getpoole.com
-paginate:            1
-baseurl:             ""
+title: Nat? Nat. Nat!
+tagline: Wandering Nerd.
+url: http://getpoole.com
+paginate: 1
+baseurl: ""
+encoding: utf-8
 
 # Assets
 #
@@ -14,17 +15,6 @@ baseurl:             ""
 sass:
   sass_dir:          _sass
   style:            :compressed
-
-# About/contact
-author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
-
-# Custom vars
-version:             2.0.0
-github:
-  repo:              https://github.com/poole/poole
 
 # Gems
 gems:
