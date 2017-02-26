@@ -1,0 +1,28 @@
+{
+	"ImportPath": "github.com/icco/static-nat",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/microcosm-cc/bluemonday",
+			"Rev": "e79763773ab6222ca1d5a7cbd9d62d83c1f77081"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.4-40-g5f33e7b78783",
+			"Rev": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
+			"Rev": "1dba4b3954bc059efc3991ec364f9f9a35f597d2"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "10c134ea0df15f7e34d789338c7a2d76cc7a3ab9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "10c134ea0df15f7e34d789338c7a2d76cc7a3ab9"
+		}
+	]
+}
