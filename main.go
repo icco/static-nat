@@ -17,6 +17,7 @@ import (
 )
 
 type Post struct {
+	Slug     string
 	Title    string
 	Html     []byte
 	Md       []byte
@@ -44,12 +45,12 @@ func main() {
 				log.Fatal(err)
 			}
 
-			new_filepath := filepath.Join(render_path, "posts", strings.Replace(file.Name(), ".md", "", 1), "index.html")
-			err = os.MkdirAll(filepath.Dir(new_filepath), 0777)
+			post, err := parseMarkdown(input, file)
 			if err != nil {
 				log.Fatal(err)
 			}
-			post, err := parseMarkdown(input, file)
+			new_filepath := filepath.Join(render_path, "posts", post.Slug, "index.html")
+			err = os.MkdirAll(filepath.Dir(new_filepath), 0777)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -99,6 +100,7 @@ func parseMarkdown(input []byte, file os.FileInfo) (*Post, error) {
 		Md:       p.Content(),
 		Html:     html,
 		DateTime: datetime,
+		Slug:     meta["id"],
 	}, nil
 }
 
