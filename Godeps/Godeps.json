@@ -2,10 +2,26 @@
 	"ImportPath": "github.com/icco/static-nat",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
+		{
+			"ImportPath": "github.com/chaseadamsio/goorgeous",
+			"Rev": "054aba677f27bd60872cfe68f8145dc57bdf4746"
+		},
 		{
 			"ImportPath": "github.com/microcosm-cc/bluemonday",
 			"Rev": "e79763773ab6222ca1d5a7cbd9d62d83c1f77081"
+		},
+		{
+			"ImportPath": "github.com/pelletier/go-buffruneio",
+			"Rev": "df1e16fde7fc330a0ca68167c23bf7ed6ac31d6d"
+		},
+		{
+			"ImportPath": "github.com/pelletier/go-toml",
+			"Comment": "v0.4.0-9-g22139eb54690",
+			"Rev": "22139eb5469018e7374b3e7ef653de37ffb44f72"
 		},
 		{
 			"ImportPath": "github.com/russross/blackfriday",
@@ -17,12 +33,25 @@
 			"Rev": "1dba4b3954bc059efc3991ec364f9f9a35f597d2"
 		},
 		{
+			"ImportPath": "github.com/spf13/cast",
+			"Rev": "f820543c3592e283e311a60d2a600a664e39f6f7"
+		},
+		{
+			"ImportPath": "github.com/spf13/hugo/parser",
+			"Comment": "v0.18-193-g0eb76b086366",
+			"Rev": "0eb76b0863666ee99b8643a37bcb46eb1c4a8043"
+		},
+		{
 			"ImportPath": "golang.org/x/net/html",
 			"Rev": "10c134ea0df15f7e34d789338c7a2d76cc7a3ab9"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html/atom",
 			"Rev": "10c134ea0df15f7e34d789338c7a2d76cc7a3ab9"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "a3f3340b5840cee44f372bddb5880fcbc419b46a"
 		}
 	]
 }
