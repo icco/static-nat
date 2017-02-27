@@ -3,6 +3,8 @@ go:
 - '1.8'
 install:
 - git clone https://github.com/icco/blog-backup
+- go get github.com/tools/godep
+- godep restore
 - go build main.go
 script:
 - ./static-nat blog-backup/_posts/
