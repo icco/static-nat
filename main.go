@@ -89,7 +89,7 @@ func parseMarkdown(input []byte, file os.FileInfo) (*Post, error) {
 
 	unsafe := blackfriday.MarkdownCommon(p.Content())
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	datetime, err := time.Parse("2006-01-02 15:04:05.000000 -0700 MST", meta["datetime"])
+	datetime, err := time.Parse("2006-01-02 15:04:05 -0700 MST", meta["datetime"])
 	if err != nil {
 		return nil, err
 	}
