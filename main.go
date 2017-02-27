@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
@@ -15,10 +17,10 @@ import (
 )
 
 type Post struct {
-	Title string
-	Html  []byte
-	Md    []byte
-	Date  time.Time
+	Title    string
+	Html     []byte
+	Md       []byte
+	DateTime time.Time
 }
 
 func main() {
@@ -43,7 +45,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			post, err := parseMarkdown(input)
+			post, err := parseMarkdown(input, file)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -55,29 +57,29 @@ func main() {
 	}
 }
 
-func parseMarkdown(input []byte) (*Post, error) {
+func parseMarkdown(input []byte, file os.FileInfo) (*Post, error) {
 	inc := twitterHandleToMarkdown(input)
 	inc = hashTagsToMarkdown(inc)
 
 	// get the page from file
-	p, err := parser.ReadFrom(f)
+	p, err := parser.ReadFrom(bytes.NewReader(input))
 	if err != nil {
-		log.Errorf(c, "Error parsing file %v: %v", file.Name(), err.Error())
-		return err
+		log.Printf("Error parsing file %v: %v", file.Name(), err.Error())
+		return nil, err
 	}
 
 	meta_uncast, err := p.Metadata()
 	if err != nil {
-		log.Errorf(c, "Error getting metadata from %v: %v", file.Name(), err.Error())
-		return err
+		log.Printf("Error getting metadata from %v: %v", file.Name(), err.Error())
+		return nil, err
 	}
 
 	meta := map[string]string{}
 	if meta_uncast != nil {
 		meta, err = cast.ToStringMapStringE(meta_uncast)
 		if err != nil {
-			log.Errorf(c, "Error casting metadata for %v: %v. Metadata: %+v", file.Name(), err.Error(), meta_uncast)
-			return err
+			log.Printf("Error casting metadata for %v: %v. Metadata: %+v", file.Name(), err.Error(), meta_uncast)
+			return nil, err
 		}
 	}
 
@@ -85,15 +87,15 @@ func parseMarkdown(input []byte) (*Post, error) {
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
 	datetime, err := time.Parse("2006-01-02 15:04:05.000000 -0700 MST", meta["datetime"])
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	return &Post{
 		Title:    meta["title"],
 		Md:       p.Content(),
 		Html:     html,
-		Datetime: datetime,
-	}
+		DateTime: datetime,
+	}, nil
 }
 
 var TwitterHandleRegex *regexp.Regexp = regexp.MustCompile(`(\s)@([_A-Za-z0-9]+)`)
