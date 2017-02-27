@@ -24,8 +24,12 @@ type Post struct {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		log.Fatal("Not enough arguments. Need one argument with a path to files.")
+	}
+
 	render_path := "render/"
-	base_path := "/Users/nat/Projects/blog-backup/posts/"
+	base_path := os.Args[1]
 	files, err := ioutil.ReadDir(base_path)
 	if err != nil {
 		log.Fatal(err)
