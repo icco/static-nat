@@ -8,3 +8,4 @@ install:
 - go build
 script:
 - ./static-nat blog-backup/_posts/
+- ls -al render/
